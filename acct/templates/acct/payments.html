@@ -1,0 +1,21 @@
+{% extends "post_login.html" %}
+{% load static %}
+
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+	{% if latest_payments %}
+	    <ul>
+		            {% for payment in latest_payments %}
+			            <li>{{ payment.first_name }}, {{ payment.last_name }}, {{ payment.payer_email }}, ${{ payment.mc_gross }}</li>
+				            {% endfor %}
+					        </ul>
+						{% else %}
+						    <p>You have NOT yet made any payment!</p>
+						    {% endif %}
+
+</div>
+{% endblock content %}
+
