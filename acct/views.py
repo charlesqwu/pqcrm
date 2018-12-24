@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404, render
 #from django.http import HttpResponse
 #from django.template import loader
 
-from .models import AcctPayment
+from .models import AcctPayment, AcctTransaction
 
 
 def payments(request, username):
@@ -21,5 +21,8 @@ def coupons(request, username):
     pass
 
 def transactions(request, username):
-    pass
+    latest_transactions = AcctTransaction.objects.filter(uid=request.user.id).order_by('-created_at')[:100]
+    context = {'latest_transactions': latest_transactions}
+    return render(request, 'acct/transactions.html', context)    
+    
 

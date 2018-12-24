@@ -62,17 +62,23 @@ DJANGO_APPS = [
     # 'django.contrib.humanize', # Handy template tags
     'django.contrib.admin',
 ]
+
 THIRD_PARTY_APPS = [
     'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    'easy_thumbnails',
+    'filer',
+    'mptt',
 ]
+
 LOCAL_APPS = [
     'pqcrm.users.apps.UsersAppConfig',
-    # Your stuff: custom apps go here
+    'acct.apps.AcctConfig',
 ]
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

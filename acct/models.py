@@ -25,3 +25,14 @@ class AcctPayment(models.Model):
         managed = False
         db_table = 'acct_payment'
 
+class AcctTransaction(models.Model):
+    created_at = models.DateTimeField()
+    uid = models.PositiveIntegerField(blank=True, null=True)
+    amount = models.FloatField()
+    action = models.CharField(max_length=30, blank=True, null=True)
+    status = models.IntegerField(blank=True, null=True)
+    reference = models.CharField(max_length=60, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'acct_transaction'
