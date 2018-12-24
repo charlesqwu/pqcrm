@@ -1,0 +1,21 @@
+{% extends "post_login.html" %}
+{% load static %}
+
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+	{% if latest_transactions %}
+	    <ul>
+		            {% for transaction in latest_transactions %}
+			            <li>{{ transaction.created_at }}, ${{ transaction.amount }}, {{ transaction.action }}, {{ transaction.reference }}</li>
+				            {% endfor %}
+					        </ul>
+						{% else %}
+						    <p>Currently there is no transaction in this account!</p>
+						    {% endif %}
+
+</div>
+{% endblock content %}
+
