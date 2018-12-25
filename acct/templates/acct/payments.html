@@ -6,15 +6,51 @@
 {% block content %}
 <div class="container">
 
-	{% if latest_payments %}
-	    <ul>
-		            {% for payment in latest_payments %}
-			            <li>{{ payment.first_name }}, {{ payment.last_name }}, {{ payment.payer_email }}, ${{ payment.mc_gross }}</li>
-				            {% endfor %}
-					        </ul>
-						{% else %}
-						    <p>You have NOT yet made any payment!</p>
-						    {% endif %}
+	<table class="table table-bordered">
+		  <thead>
+			      <tr>
+				            <th>Created At</th>
+					          <th>First Name</th>
+						        <th>Last Name</th>
+							      <th>Email</th>
+							            <th>Amount</th>
+								        </tr>
+									  </thead>
+									    <tbody>
+										        {% for payment in payments_list %}
+											      <tr>
+												              <td>{{ payment.created_at }}</td>
+													              <td>{{ payment.first_name }}</td>
+														              <td>{{ payment.last_name }}</td>
+															              <td>{{ payment.payer_email }}</td>
+																              <td>{{ payment.mc_gross }}</td>
+																	            </tr>
+																		        {% endfor %}
+																			  </tbody>
+	</table>
+
+	{% if payments_list.has_other_pages %}
+	  <ul class="pagination">
+		      {% if payments_list.has_previous %}
+		            <li><a href="?page={{ payments_list.previous_page_number }}">&laquo;</a></li>
+			        {% else %}
+				      <li class="disabled"><span>&laquo;</span></li>
+				          {% endif %}
+					      {% for i in payments_list.paginator.page_range %}
+					            {% if payments_list.number == i %}
+						            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+							          {% else %}
+								          <li><a href="?page={{ i }}">{{ i }}</a></li>
+									        {% endif %}
+										    {% endfor %}
+										        {% if payments_list.has_next %}
+											      <li><a href="?page={{ payments_list.next_page_number }}">&raquo;</a></li>
+											          {% else %}
+												        <li class="disabled"><span>&raquo;</span></li>
+													    {% endif %}
+													      </ul>
+													      {% endif %}
+
 
 </div>
 {% endblock content %}
