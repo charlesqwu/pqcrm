@@ -61,6 +61,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     # 'django.contrib.humanize', # Handy template tags
 
+    'filebrowser',
     'grappelli',
     'django.contrib.admin',
 ]

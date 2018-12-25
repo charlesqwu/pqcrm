@@ -5,6 +5,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from filebrowser.sites import site
+
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
@@ -14,6 +16,7 @@ urlpatterns = [
     ),
  
     # Django Admin, use {% url 'admin:index' %}
+    path('admin/filebrowser/', site.urls),
     path('grappelli/', include('grappelli.urls')), # grappelli URLS
     path(settings.ADMIN_URL, admin.site.urls),
 
